@@ -27,7 +27,7 @@ public class FRNNRandomSearch {
             FitnessFunction avg = new AverageSpeed(exp.arena);
             exp.startExperiment();
             fit = avg.getFitness();
-            System.out.println("fitness = "+ fit);
+            System.out.printf("[%3d/%3d] fitness = %f%n",i, evals, fit);
             if(fit>bestfit){
                 bestfit = fit; res = wm[0];
             }
@@ -49,7 +49,7 @@ public class FRNNRandomSearch {
     public static void main(String[] arg){
         String scenario = "data/scenarios/arena1.svg";
         FRNNRandomSearch s = new FRNNRandomSearch();
-        double[][] wmbest = s.search(scenario, 5, 5, 500); // 5 sensors of each type, 2 neurons, 20 evaluations
+        double[][] wmbest = s.search(scenario, 5, 5, 100); // 5 sensors of each type, 2 neurons, 20 evaluations
         System.out.println(Util.toString2Darray(wmbest,","));
         s.play(scenario,wmbest); // play the best one
     }
