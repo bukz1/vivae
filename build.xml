@@ -5,7 +5,7 @@
     <property name="CLASSES_DIR" value="${BUILD_DIR}/classes"/>
     <property name="SRC_DIR" value="src"/>
     <property name="LIB_DIR" value="lib"/>
-    <property name="DATA_DIR" value="data"/>
+    <property name="DATA_DIR" value="cfg/vivae"/>
 
     <target name="clean">
         <delete includeemptydirs="true">
