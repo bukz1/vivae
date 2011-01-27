@@ -1,12 +1,4 @@
-/**
- * This is VIVAE (Visual Vector Agent Environment)
- * a library allowing for simulations of agents in co-evolution
- * written as a bachelor project
- * by Petr Smejkal
- * at Czech Technical University in Prague
- * in 2008
- */
-package vivae.example;
+package vivae.example.ceamath;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -27,24 +19,28 @@ import vivae.arena.parts.VivaeObject;
 import vivae.util.Util;
 
 /**
- * @author HKou
+ * Created by IntelliJ IDEA.
+ * User: bukz1
+ * Date: 1/27/11
+ * Time: 1:48 PM
+ * To change this template use File | Settings | File Templates.
  */
-public class FRNNControlledRobot extends RobotWithMultipleSensors {
+public class CEAExperimentRobot extends RobotWithMultipleSensors {
 
     protected double[][] sensoryData;
 
-    public FRNNControlledRobot(float x, float y) {
+    public CEAExperimentRobot(float x, float y) {
         super(x, y);
         sensors = new Vector<Sensor>();
         sensorsMap = new HashMap<Integer, Sensor>();
     }
 
-    public FRNNControlledRobot(Shape shape, int layer, Arena arena) {
+    public CEAExperimentRobot(Shape shape, int layer, Arena arena) {
         this((float) shape.getBounds2D().getCenterX(),
                 (float) shape.getBounds2D().getCenterY(), arena);
     }
 
-    public FRNNControlledRobot(float x, float y, Arena arena) {
+    public CEAExperimentRobot(float x, float y, Arena arena) {
         this(x, y);
         diameter = 12;
         boundingCircleRadius = (float) Math.sqrt(2 * diameter * diameter) / 2;
@@ -63,7 +59,7 @@ public class FRNNControlledRobot extends RobotWithMultipleSensors {
     }
 
     public void setSensors(int howMany, double startingAngle, double angleIncrement,
-            double maxDistance, double frictionDistance) {
+                           double maxDistance, double frictionDistance) {
         for (int i = 0; i < howMany; i++) {
             addDistanceSensor(startingAngle + i * angleIncrement, maxDistance);
         }

@@ -1,5 +1,6 @@
 package vivae.example;
 
+import robot.RobotWithMultipleSensors;
 import vivae.controllers.RobotWithSensorController;
 import vivae.util.Util;
 
@@ -24,32 +25,32 @@ public class FRNNController extends RobotWithSensorController {
     @Override
     public void moveControlledObject() {
 
-        if (robot instanceof FRNNControlledRobot) {
-            double[] input = Util.flatten(((FRNNControlledRobot) robot).getSensoryData());
+//        if (robot instanceof FRNNControlledRobot) {
+//        double[] input = Util.flatten(((FRNNControlledRobot) robot).getSensoryData());
+        double[] input = Util.flatten(((RobotWithMultipleSensors)robot).getSensoryData());
 
-            double[] eval = frnn.evalNetwork(input);
+        double[] eval = frnn.evalNetwork(input);
 
-            double lWheel = eval[0];
-            double rWheel = eval[eval.length - 1];
-            double angle;
-            double acceleration = 5.0 * (lWheel + rWheel);
-            if (acceleration < 0) {
-                acceleration = 0; // negative speed causes problems, why?
-            }
-            double speed = Math.abs(robot.getSpeed() / robot.getMaxSpeed());
-            speed = Math.min(Math.max(speed, -1), 1);
-            if (rWheel > lWheel) {
-                angle = 10 * (1.0 - speed);
-            } else {
-                angle = -10 * (1.0 - speed);
-            }
-            robot.rotate((float) angle);
-            robot.accelerate((float) acceleration);
+        double lWheel = eval[0];
+        double rWheel = eval[eval.length - 1];
+        double angle;
+        double acceleration = 5.0 * (lWheel + rWheel);
+        if (acceleration < 0) {
+            acceleration = 0; // negative speed causes problems, why?
         }
+        double speed = Math.abs(robot.getSpeed() / robot.getMaxSpeed());
+        speed = Math.min(Math.max(speed, -1), 1);
+        if (rWheel > lWheel) {
+            angle = 10 * (1.0 - speed);
+        } else {
+            angle = -10 * (1.0 - speed);
+        }
+        robot.rotate((float) angle);
+        robot.accelerate((float) acceleration);
 
     }
 
-    void setFRNN(FRNN net) {
+    public void setFRNN(FRNN net) {
         this.frnn = net;
     }
 }
