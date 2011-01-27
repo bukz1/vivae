@@ -27,7 +27,7 @@ public class FRNNRandomSearch {
             FitnessFunction avg = new AverageSpeed(exp.arena);
             exp.startExperiment();
             fit = avg.getFitness();
-            System.out.printf("[%3d/%3d] fitness = %f%n",i, evals, fit);
+            System.out.printf("[%3d/%3d] fitness = %f%n", i+1, evals, fit);
             if(fit>bestfit){
                 bestfit = fit;
                 res = wm[0];
