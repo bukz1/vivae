@@ -4,6 +4,7 @@ import robot.controller.*;
 import robot.joystick.JoystickDriver;
 import robot.ui.MainForm;
 import vivae.example.BuildExperiment;
+import vivae.util.Util;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -24,10 +25,26 @@ public class Main {
 
         BuildExperiment experiment = new BuildExperiment(vivaeControllerAdapter);
         experiment.createArena("cfg/vivae/scenarios/arena3.svg", true);
-        experiment.setupExperiment(300);
-        experiment.setLoopSleepTime(10);
+        experiment.setupExperiment();
         experiment.startExperiment();
     }
+
+//    public static void runVivaeFRNNDemo() {
+//        int neurons = 3;
+//        int sensors = 3;
+//        double[][][] wm = Util.randomArray3D(1, neurons, 2 * sensors + neurons + 1, -15, 15);
+//
+//        IRobotInterface robot = new VivaeRobot(null);
+//        IRobotController controller = new NeuralController(wm[0], robot);
+//        VivaeControllerAdapter vivaeControllerAdapter = new VivaeControllerAdapter(controller);
+//        // controller needs reference to the vivaeControllerAdapter
+//
+//        BuildExperiment experiment = new BuildExperiment(vivaeControllerAdapter);
+//        experiment.createArena("cfg/vivae/scenarios/simple1_cea.svg", true);
+//        experiment.setupExperiment(300);
+//        experiment.setLoopSleepTime(10);
+//        experiment.startExperiment();
+//    }
 
     public static void runHWDemo() {
         try {
@@ -225,6 +242,7 @@ public class Main {
 
     public static void main(String[] args) {
         runVivaeDemo();
+//        runVivaeFRNNDemo();
 //        runJoystickHWDemo();
 //        runFileReaderHWDemo();
 //        runMultipleDemo();

@@ -546,7 +546,7 @@ public class Arena extends JPanel implements KeyListener, Runnable {
      * and the thread sleeps for a several (according to loopSleepTime property) milisecs.
      */
     public void run() {
-        System.out.println("totalStepsPerSimulation = "+totalStepsPerSimulation);
+//        System.out.println("totalStepsPerSimulation = "+totalStepsPerSimulation);
         while (isRunning) {
             step();
 

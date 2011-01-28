@@ -32,6 +32,10 @@ public class JLinkCEAExperiment {
         this.scenario = scenario;
     }
 
+    public String test(String input) {
+        return "Echo: " + input;
+    }
+
     public double evaluateExperiment(double[][][] wm, boolean visible) {
         FitnessFunction avg;
 
@@ -40,6 +44,8 @@ public class JLinkCEAExperiment {
         avg = new AverageSpeed(arena);
 
         startExperiment();
+
+        System.out.printf("%f%n", avg.getFitness());
 
         return avg.getFitness();
     }
@@ -106,10 +112,10 @@ public class JLinkCEAExperiment {
 
         arena.registerController(agent, frnnc);
 
-        System.out.println("agent = " + agent.getClass());
+//        System.out.println("agent = " + agent.getClass());
 
         if (agent instanceof CEAExperimentRobot) {
-            System.out.println("CEAExperimentRobot");
+//            System.out.println("CEAExperimentRobot");
 //            ((CEAExperimentRobot) agent).setDistanceSensors(snum / 2, sangle, ai, maxDistance, frictionDistance);
 //            ((CEAExperimentRobot) agent).setFrictionSensors(snum / 2, sangle, ai, maxDistance, frictionDistance);
             ((CEAExperimentRobot) agent).setSensors(snum / 2 /* 3 */, sangle, ai, maxDistance, frictionDistance);
@@ -117,7 +123,7 @@ public class JLinkCEAExperiment {
     }
 
     /**
-     * @param wm               Weight matrices to be setup to the controllers. The weight matrices are evenly distributed among the agents.
+     * @param wm               Weight matrices Sto be setup to the controllers. The weight matrices are evenly distributed among the agents.
      * @param maxDistance
      * @param frictionDistance
      */
@@ -126,6 +132,10 @@ public class JLinkCEAExperiment {
         for (int i = 0; i < agentnum; i++) {
             setupAgent(i, wm[i % wm.length], maxDistance, frictionDistance);
         }
+    }
+
+    public String getScenario() {
+        return scenario;
     }
 
     public static void main(String[] args) {
@@ -137,7 +147,7 @@ public class JLinkCEAExperiment {
         // 3 robots,
         int sensors = 5; // 5 for distance and 5 for surface
         int neurons = 2;
-        int robots = 3;
+        int robots = 1;
 
         double[][][] wm = Util.randomArray3D(robots, neurons, /* 3 */ 2 * sensors + neurons + 1, -5, 5);
 

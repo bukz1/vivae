@@ -34,13 +34,15 @@ public class NeuralController implements IRobotController {
     }
 
     public void step() {
-        if (stepCount < 50) {
-            robot.setWheelSpeed(50, 50);
-        } else if (stepCount < 100) {
-            robot.setWheelSpeed(0, 10);
-        } else if (stepCount < 110) {
-            robot.setWheelSpeed(50, 50);
-        }
+
+        double[] input = robot.getSensorData();
+        double[] eval = network.evalNetwork(input);
+
+        double lWheel = eval[0];
+        double rWheel = eval[1];
+
+        robot.setWheelSpeed(lWheel, rWheel);
+
         stepCount++;
     }
 

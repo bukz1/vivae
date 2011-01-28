@@ -15,7 +15,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.48.0 r9654"
    version="1.0"
-   sodipodi:docname="ceamath_simple2.svg"
+   sodipodi:docname="ceamath_simple1.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs2386">
@@ -69,7 +69,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

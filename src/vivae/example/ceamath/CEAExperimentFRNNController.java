@@ -45,9 +45,9 @@ public class CEAExperimentFRNNController extends RobotWithSensorController {
         }
 
         // log
-        for (int i = 0; i < input.length; i++)
-            System.out.printf("%f ", input[i]);
-        System.out.printf("%f %f%n", lWheel, rWheel);
+//        for (int i = 0; i < input.length; i++)
+//            System.out.printf("%f ", input[i]);
+//        System.out.printf("%f %f%n", lWheel, rWheel);
 
         robot.rotate((float) angle);
         robot.accelerate((float) acceleration);

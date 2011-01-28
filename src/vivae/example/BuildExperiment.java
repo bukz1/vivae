@@ -81,6 +81,10 @@ public class BuildExperiment {
         arena.step();
     }
 
+    public VivaeController getController() {
+        return controller;
+    }
+
     /*
     public static void main(String[] args) {
 
