@@ -66,6 +66,9 @@ public class CEAExperimentRobot extends RobotWithMultipleSensors {
         for (int i = 0; i < howMany; i++) {
             addFrictionSensor(startingAngle + i * angleIncrement, frictionDistance);
         }
+//        for (int i = 0; i < howMany; i++) {
+//            addFrictionSensor(startingAngle + i * angleIncrement, 2 * frictionDistance);
+//        }
     }
 
     public void addDistanceSensor(Double angle, double maxDistance) {
@@ -83,6 +86,7 @@ public class CEAExperimentRobot extends RobotWithMultipleSensors {
     }
 
     public double[][] getSensoryData() {
+//        double[][] data = new double[3][sensorNumber / 3];
         double[][] data = new double[2][sensorNumber / 2];
         Vector<VivaeObject> allObjects = getArena().getVivaes();
         int di = 0, si = 0;
@@ -99,6 +103,11 @@ public class CEAExperimentRobot extends RobotWithMultipleSensors {
                 data[1][si] = Util.rescale(v, 1, 10);   // should min and max friction in the arena
                 si++;
             }
+//            if (sensor instanceof SurfaceFrictionSensor) {
+//                v = ((SurfaceFrictionSensor) sensor).getSurfaceFriction();
+//                data[si/(sensorNumber/3)+1][si%(sensorNumber/3)] = Util.rescale(v, 1, 10);   // should min and max friction in the arena
+//                si++;
+//            }
         }
         sensoryData = data;
         return data;

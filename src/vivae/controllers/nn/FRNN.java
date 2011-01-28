@@ -21,7 +21,7 @@ public class FRNN {
     public FRNN() {
     }
     
-    FRNN(double[][] wIn, double[][] wRec, double[] wThr) {
+    public FRNN(double[][] wIn, double[][] wRec, double[] wThr) {
         this.init(wIn, wRec, wThr);
     }
 

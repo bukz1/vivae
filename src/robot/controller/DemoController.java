@@ -21,7 +21,9 @@ public class DemoController implements IRobotController {
         if (stepCount < 50) {
             robot.setWheelSpeed(50, 50);
         } else if (stepCount < 100) {
-            robot.setWheelSpeed(-50, -50);
+            robot.setWheelSpeed(0, 10);
+        } else if (stepCount < 110) {
+            robot.setWheelSpeed(50, 50);
         }
         stepCount++;
     }

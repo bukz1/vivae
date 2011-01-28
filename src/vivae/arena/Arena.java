@@ -53,7 +53,7 @@ public class Arena extends JPanel implements KeyListener, Runnable {
     /**
      * Maximum number of steps before VIVAE stops.
      */
-    public int totalStepsPerSimulation = 1000;
+    private int totalStepsPerSimulation = 1000;
     public int stepsDone = 0;
     /**
      * Screen width.
@@ -546,6 +546,7 @@ public class Arena extends JPanel implements KeyListener, Runnable {
      * and the thread sleeps for a several (according to loopSleepTime property) milisecs.
      */
     public void run() {
+        System.out.println("totalStepsPerSimulation = "+totalStepsPerSimulation);
         while (isRunning) {
             step();
 

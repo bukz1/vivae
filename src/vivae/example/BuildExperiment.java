@@ -30,7 +30,7 @@ public class BuildExperiment {
     public void createArena(String svgFilename, boolean visible) {
         f = new JFrame("Simple Experiment");
         arena = new Arena(f);
-        arena.totalStepsPerSimulation = Integer.MAX_VALUE;
+        arena.setTotalStepsPerSimulation(Integer.MAX_VALUE);
         arena.loadScenario(svgFilename);
         arena.setAllArenaPartsAntialiased(true);
         f.setBounds(50, 0, arena.screenWidth, arena.screenHeight + 30);
@@ -62,6 +62,16 @@ public class BuildExperiment {
         }
         arena.init();
     }
+
+    public void setupExperiment(int totalSteps) {
+        setupExperiment();
+        arena.setTotalStepsPerSimulation(totalSteps);
+    }
+
+    public void setLoopSleepTime(int loopSleepTime) {
+        arena.setLoopSleepTime(loopSleepTime);
+    }
+
 
     public void startExperiment() {
         arena.run();

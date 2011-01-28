@@ -24,7 +24,8 @@ public class Main {
 
         BuildExperiment experiment = new BuildExperiment(vivaeControllerAdapter);
         experiment.createArena("cfg/vivae/scenarios/arena3.svg", true);
-        experiment.setupExperiment();
+        experiment.setupExperiment(300);
+        experiment.setLoopSleepTime(10);
         experiment.startExperiment();
     }
 
@@ -223,7 +224,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        runVivaeDemo();
+        runVivaeDemo();
 //        runJoystickHWDemo();
 //        runFileReaderHWDemo();
 //        runMultipleDemo();
@@ -231,6 +232,6 @@ public class Main {
 //        runHWUserUIDemo();
 //        runVivaeUserUI();
 //        runFileWriterDemo();
-        runJoystickSWDemo();
+//        runJoystickSWDemo();
     }
 }

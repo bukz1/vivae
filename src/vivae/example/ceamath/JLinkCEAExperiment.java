@@ -2,8 +2,6 @@ package vivae.example.ceamath;
 
 import vivae.arena.Arena;
 import vivae.arena.parts.Active;
-import vivae.example.FRNNControlledRobot;
-import vivae.example.FRNNController;
 import vivae.fitness.AverageSpeed;
 import vivae.fitness.FitnessFunction;
 import vivae.util.FrictionBuffer;
@@ -26,7 +24,7 @@ public class JLinkCEAExperiment {
     private Vector<Active> agents = null;
     private String scenario;
 
-    private final double MAX_DISTANCE = 100;
+    private final double MAX_DISTANCE = 300;
     private final double FRICTION_DISTANCE = 25;
 
     public JLinkCEAExperiment(String scenario) {
@@ -98,9 +96,9 @@ public class JLinkCEAExperiment {
         int snum = (wm[0].length - neurons - 1);
 
         double sangle = -Math.PI / 2;
-        double ai = Math.PI / (snum / 2 - 1);
+        double ai = Math.PI / (snum / 2 /* 3 */ - 1);
 
-        FRNNController frnnc = new FRNNController();
+        CEAExperimentFRNNController frnnc = new CEAExperimentFRNNController();
 
         frnnc.initFRNN(Util.subMat(wm, 0, snum - 1),
                 Util.subMat(wm, snum, snum + neurons - 1),
@@ -112,10 +110,9 @@ public class JLinkCEAExperiment {
 
         if (agent instanceof CEAExperimentRobot) {
             System.out.println("CEAExperimentRobot");
-            ((CEAExperimentRobot) agent).setSensors(snum / 2, sangle, ai, maxDistance, frictionDistance);
-        } else if (agent instanceof FRNNControlledRobot) {
-            System.out.println("FRNNControlledRobot");
-            ((FRNNControlledRobot) agent).setSensors(snum / 2, sangle, ai, maxDistance, frictionDistance);
+//            ((CEAExperimentRobot) agent).setDistanceSensors(snum / 2, sangle, ai, maxDistance, frictionDistance);
+//            ((CEAExperimentRobot) agent).setFrictionSensors(snum / 2, sangle, ai, maxDistance, frictionDistance);
+            ((CEAExperimentRobot) agent).setSensors(snum / 2 /* 3 */, sangle, ai, maxDistance, frictionDistance);
         }
     }
 
@@ -134,15 +131,15 @@ public class JLinkCEAExperiment {
     public static void main(String[] args) {
 
 //        JLinkCEAExperiment exp = new JLinkCEAExperiment("cfg/vivae/scenarios/ceamath_oval1.svg");
-        JLinkCEAExperiment exp = new JLinkCEAExperiment("cfg/vivae/scenarios/ceamath_simple1.svg");
+        JLinkCEAExperiment exp = new JLinkCEAExperiment("cfg/vivae/scenarios/ceamath_simple2.svg");
 
         // random weight matrices as 3D array
         // 3 robots,
-        int sensors = 7; // 5 for distance and 5 for surface
+        int sensors = 5; // 5 for distance and 5 for surface
         int neurons = 2;
         int robots = 3;
 
-        double[][][] wm = Util.randomArray3D(robots, neurons, 2 * sensors + neurons + 1, -5, 5);
+        double[][][] wm = Util.randomArray3D(robots, neurons, /* 3 */ 2 * sensors + neurons + 1, -5, 5);
 
         double fitness = exp.evaluateExperiment(wm, true);
 
